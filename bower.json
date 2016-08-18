@@ -1,0 +1,24 @@
+{
+  "name": "service-manager-app",
+  "version": "0.0.1",
+  "dependencies": {
+    "angular": "^1.5.5",
+    "lodash": "^4.14.2",
+    "angular-mocks": "^1.5.5",
+    "angular-ui-router": "^0.3.1",
+    "restangular": "^1.5.2",
+    "angular-spinner": "^0.8.1",
+    "angular-notify": "^2.5.0",
+    "moment": "^2.14.1",
+    "angular-cookie": "^4.1.0",
+    "angular-file-saver": "^1.1.2",
+    "angular-animate": "^1.5.5",
+    "highcharts-ng": "^0.0.12",
+    "angular-bootstrap": "^2.0.2",
+    "angular-touch": "^1.5.5",
+    "angular-messages": "^1.5.5"
+  },
+  "devDependencies": {
+    "angular": "1.5.5"
+  }
+}

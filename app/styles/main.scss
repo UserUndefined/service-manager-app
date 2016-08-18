@@ -1,0 +1,29 @@
+@import '../styles/bootstrap.css';
+@import '../styles/bootstrap-theme.css';
+@import 'product';
+@import 'validation';
+@import 'receipt';
+@import 'splash';
+@import 'sidebar';
+
+html {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+header, main, footer {
+  padding-left: 240px;
+}
+
+@media only screen and (max-width : 992px) {
+  header, main, footer {
+    padding-left: 0;
+  }
+}
+
+li:hover {
+  background: #eee;
+}
+
+.collection-item:hover {
+  background: #eee;
+}
