@@ -4,36 +4,27 @@ angular.module('app')
     .directive('activeSideNav', function() {
         return {
             scope: false,
-            restrict: 'A',
-            controller: function($scope, $state){
-                $scope.toggleSidenav = function(menuId){
-                    //$mdSidenav(menuId).toggle();
-                };
-                $scope.menu = [
+            restrict: 'E',
+            templateUrl: 'views/directives/activeSideNav.html',
+            controller: function($scope){
+                $scope.navLinks = [
                     {
-                        link : 'dashboard',
-                        title: 'Dashboard',
-                        icon: 'dashboard'
+                        link : '#/dashboard',
+                        title: 'Dashboard'
                     },
                     {
-                        link : 'customerNew',
-                        title: 'New Customer',
-                        icon: 'group'
+                        link : '#/customer/new',
+                        title: 'New Customer'
                     },
                     {
-                        link : 'orderNew',
-                        title: 'New Order',
-                        icon: 'group'
+                        link : '#/customer/order/new',
+                        title: 'New Order'
                     },
                     {
-                        link : 'customerSearch',
-                        title: 'Customer Search',
-                        icon: 'message'
+                        link : '#/customer/search',
+                        title: 'Customer Search'
                     }
                 ];
-                $scope.openPage = function(menuItem){
-                    $state.go(menuItem.link);
-                }
             }
         };
     });

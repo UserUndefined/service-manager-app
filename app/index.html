@@ -21,55 +21,12 @@
     <!-- endbuild -->
 </head>
 
-<body layout="row">
+<body class="ng-cloak">
 
-<!--div class="splash" ng-cloak>
-    <h2>Service Production Manager</h2>
-</div-->
+<active-side-nav ng-if="$state.current.name !== 'login'"></active-side-nav>
 
-<md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2 side-nav-link-base" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" ng-if="$state.current.name !== 'login'">
-    <div class="side-nav-link-header">
-    <md-toolbar>
-        <span flex></span>
-        <div layout="column" class="md-toolbar-tools-bottom inset">
-            <div class="md-toolbar-tools">
-                <h3>Guest</h3>
-            </div>
-        </div>
-    </md-toolbar>
-    </div>
-    <md-list>
-        <md-item class="side-nav-link" ng-repeat="item in menu">
-            <side-nav-link flex="100">
-            <md-button ng-click="openPage(item)">
-                <md-item-content md-ink-ripple layout="row" layout-align="start center">
-                    <div class="inset">
-                        <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
-                    </div>
-                    <div class="inset">{{item.title}}
-                    </div>
-                </md-item-content>
-            </md-button>
-            </side-nav-link>
-        </md-item>
-    </md-list>
-</md-sidenav>
-<div layout="column" class="relative" layout-fill role="main">
-    <md-toolbar active-side-nav>
-        <div class="md-toolbar-tools">
-            <md-button ng-click="toggleSidenav('left')" hide-gt-sm aria-label="Menu">
-                <ng-md-icon icon="menu"></ng-md-icon>
-            </md-button>
-            <h3>
-                Dashboard
-            </h3>
-        </div>
-    </md-toolbar>
-    <md-content flex md-scroll-y>
-        <ui-view layout="column" layout-fill layout-padding>
-            <div class="inset" hide-sm></div>
-        </ui-view>
-    </md-content>
+<div id="ng-view" class="container slide-animation admin-content">
+    <ui-view></ui-view>
 </div>
 
 

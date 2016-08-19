@@ -6,11 +6,13 @@
 ;;angular.module('appTemplates', []).run(['$templateCache', function($templateCache) {
   "use strict";
   $templateCache.put("views/customerNew.html",
-    "<md-content layout=row layout-align=center><div layout-fill flex-gt-xs=66><div layout-align=center><form name=customerNewForm layout=column><md-input-container class=md-block><label>Name</label><input name=customerName class=validate required ng-model=customer.name><div ng-messages=customerNewForm.customerName.$error><div ng-message=required>You must supply a company name.</div></div></md-input-container><md-input-container class=md-block><label>Address Line 1</label><input name=customerAddress1 class=validate required ng-model=customer.address1><div ng-messages=customerNewForm.customerAddress1.$error><div ng-message=required>You must supply a first line address.</div></div></md-input-container><md-input-container class=md-block><label>Address Line 2</label><input class=validate ng-model=customer.address2></md-input-container><md-input-container class=md-block><label>Town</label><input class=validate ng-model=customer.town></md-input-container><md-input-container class=md-block><label>County</label><input class=validate ng-model=customer.county></md-input-container><md-input-container class=md-block><label>Postcode</label><input name=customerPostcode class=validate required ng-model=customer.postcode><div ng-messages=customerNewForm.customerPostcode.$error><div ng-message=required>You must supply a postcode.</div><div ng-message=pattern>Invalid postcode.</div></div></md-input-container><md-input-container class=md-block><label>Telephone</label><input name=customerTelephone type=tel class=validate required ng-model=customer.telephone><div ng-messages=customerNewForm.customerTelephone.$error><div ng-message=required>You must supply a telephone number.</div><div ng-message=pattern>Invalid telephone number.</div></div></md-input-container><md-input-container class=md-block><label>Email</label><input name=customerEmail type=email class=validate ng-model=customer.email ng-pattern=\"/^.+@.+\\..+$/\"><div ng-messages=customerNewForm.customerEmail.$error><div ng-message=pattern>Invalid email address.</div></div></md-input-container><md-input-container class=md-block><label>Url</label><input name=customerUrl type=url class=validate ng-model=customer.url><div ng-messages=customerNewForm.customerUrl.$error><div ng-message=url>Invalid url.</div></div></md-input-container><md-input-container><md-select ng-model=customer.category placeholder=\"Select a category\"><md-option ng-value=category.name ng-repeat=\"category in categories\">{{ category.name }}</md-option></md-select></md-input-container><md-input-container><label>Notes</label><textarea class=validate type=text ng-model=customer.notes></textarea></md-input-container><md-button ng-click=submitCustomerNew() ng-if=!customerInvalid class=\"md-raised md-primary\">Save Customer</md-button><md-button ng-click=submitCustomerNew() ng-if=customerInvalid ng-disabled=true>Save Customer</md-button></form></div></div></md-content>");
+    "<section><div class=row><div class=\".col-md-6 .col-md-offset-3\"><form class=form-horizontal name=customerNewForm><div class=form-group><label>Name</label><input name=customerName class=validate required ng-model=customer.name><div ng-messages=customerNewForm.customerName.$error><div ng-message=required>You must supply a company name.</div></div></div><div class=form-group><label>Address Line 1</label><input name=customerAddress1 class=validate required ng-model=customer.address1><div ng-messages=customerNewForm.customerAddress1.$error><div ng-message=required>You must supply a first line address.</div></div></div><div class=form-group><label>Address Line 2</label><input class=validate ng-model=customer.address2></div><div class=form-group><label>Town</label><input class=validate ng-model=customer.town></div><div class=form-group><label>County</label><input class=validate ng-model=customer.county></div><div class=form-group><label>Postcode</label><input name=customerPostcode class=validate required ng-model=customer.postcode><div ng-messages=customerNewForm.customerPostcode.$error><div ng-message=required>You must supply a postcode.</div><div ng-message=pattern>Invalid postcode.</div></div></div><div class=form-group><label>Telephone</label><input name=customerTelephone type=tel class=validate required ng-model=customer.telephone><div ng-messages=customerNewForm.customerTelephone.$error><div ng-message=required>You must supply a telephone number.</div><div ng-message=pattern>Invalid telephone number.</div></div></div><div class=form-group><label>Email</label><input name=customerEmail type=email class=validate ng-model=customer.email ng-pattern=\"/^.+@.+\\..+$/\"><div ng-messages=customerNewForm.customerEmail.$error><div ng-message=pattern>Invalid email address.</div></div></div><div class=form-group><label>Url</label><input name=customerUrl type=url class=validate ng-model=customer.url><div ng-messages=customerNewForm.customerUrl.$error><div ng-message=url>Invalid url.</div></div></div><div class=form-group><md-select ng-model=customer.category placeholder=\"Select a category\"><md-option ng-value=category.name ng-repeat=\"category in categories\">{{ category.name }}</md-option></md-select></div><div class=form-group><label>Notes</label><textarea class=validate type=text ng-model=customer.notes></textarea></div><md-button ng-click=submitCustomerNew() ng-if=!customerInvalid class=\"md-raised md-primary\">Save Customer</md-button><md-button ng-click=submitCustomerNew() ng-if=customerInvalid ng-disabled=true>Save Customer</md-button></form></div></div></section>>");
   $templateCache.put("views/customerSearch.html",
     "<md-content layout=row layout-align=center><div layout-fill flex-gt-xs=66><div layout-align=center><form name=customerSearchForm layout=column><md-input-container class=md-block><label>Search</label><input name=customerSearch class=validate ng-model=customer.searchText></md-input-container><md-button ng-click=searchCustomers() ng-disabled=\"customer.searchText == ''\" class=\"md-raised md-primary\">Search</md-button></form></div></div></md-content>");
   $templateCache.put("views/dashboard.html",
     "<md-content class=md-padding layout-xs=column layout=row><div flex-xs flex-gt-xs=50 layout=column><md-card><md-card-content><div><highchart id=weekOrdersChart config=weekOrdersConfig></highchart></div></md-card-content></md-card></div><div flex-xs flex-gt-xs=50 layout=column><md-card><md-card-content><div><highchart id=statusCountChart config=statusCountConfig></highchart></div></md-card-content></md-card></div></md-content>");
+  $templateCache.put("views/directives/activeSideNav.html",
+    "<nav class=\"navbar navbar-static-top navbar-inverse\"><div class=container-fluid><div class=navbar-header><button type=button class=navbar-toggle ng-init=\"navCollapsed = true\" ng-click=\"navCollapsed = !navCollapsed\" data-toggle=collapse data-target=.navbar-collapse><span class=icon-bar></span> <span class=icon-bar></span> <span class=icon-bar></span></button> <a class=navbar-brand href=#><span class=\"glyphicon glyphicon-home\"></span> Service Manager</a></div><div class=\"collapse navbar-collapse\" id=bs-example-navbar-collapse-6 ng-class=\"{'in': !navCollapsed}\"><ul class=\"nav navbar-nav\"><li ng-repeat=\"navLink in navLinks\"><a ng-href={{navLink.link}}>{{navLink.title}}</a></li></ul></div></div></nav>");
   $templateCache.put("views/directives/currentUser.html",
     "<i class=material-icons>perm_identity</i>");
   $templateCache.put("views/login.html",
@@ -331,6 +333,21 @@ angular.module('app')
 ;'use strict';
 
 angular.module('app')
+    .controller('NavBarController', ['$scope', '$state', 'userService', 'notify', function ($scope, $state, userService, notify) {
+
+        function initialise(){
+            $scope.isCollapsed = true;
+            $scope.items = [
+                "The first choice!",
+                "And another choice for you.",
+                "but wait! A third!"
+            ];        }
+
+        initialise();
+    }]);
+;'use strict';
+
+angular.module('app')
     .controller('OrderNewController', ['$scope', '$state', 'userService', 'notify', function ($scope, $state, userService, notify) {
 
         var orderItemIndex = 0;
@@ -403,36 +420,27 @@ angular.module('app')
     .directive('activeSideNav', function() {
         return {
             scope: false,
-            restrict: 'A',
-            controller: ['$scope', '$state', function($scope, $state){
-                $scope.toggleSidenav = function(menuId){
-                    //$mdSidenav(menuId).toggle();
-                };
-                $scope.menu = [
+            restrict: 'E',
+            templateUrl: 'views/directives/activeSideNav.html',
+            controller: ['$scope', function($scope){
+                $scope.navLinks = [
                     {
-                        link : 'dashboard',
-                        title: 'Dashboard',
-                        icon: 'dashboard'
+                        link : '#/dashboard',
+                        title: 'Dashboard'
                     },
                     {
-                        link : 'customerNew',
-                        title: 'New Customer',
-                        icon: 'group'
+                        link : '#/customer/new',
+                        title: 'New Customer'
                     },
                     {
-                        link : 'orderNew',
-                        title: 'New Order',
-                        icon: 'group'
+                        link : '#/customer/order/new',
+                        title: 'New Order'
                     },
                     {
-                        link : 'customerSearch',
-                        title: 'Customer Search',
-                        icon: 'message'
+                        link : '#/customer/search',
+                        title: 'Customer Search'
                     }
                 ];
-                $scope.openPage = function(menuItem){
-                    $state.go(menuItem.link);
-                }
             }]
         };
     });
