@@ -22,9 +22,9 @@
   $templateCache.put("views/login.html",
     "<div class=container><div class=row><div class=\"col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3\"><form name=loginForm><div class=form-group><h3>Service Manager Login</h3></div><div class=form-group><label for=logonOrganisation>Organisation</label><input class=form-control id=logonOrganisation placeholder=\"Enter organisation\" ng-model=user.organisation required minlength=3 maxlength=50></div><div class=form-group><label for=logonEmail>Email Address</label><input type=email class=form-control id=logonEmail placeholder=\"Enter email\" ng-model=user.logon required minlength=10 maxlength=100 ng-pattern=\"/^.+@.+\\..+$/\"></div><div class=form-group><label for=logonPassword>Password</label><input type=password class=form-control id=logonPassword placeholder=\"Enter password\" ng-model=user.password required></div><div class=checkbox><label><input type=checkbox ng-model=user.rememberMe> Remember me</label></div><button type=submit class=\"btn btn-default\" ng-click=submitLogon()>Login</button></form></div></div></div>");
   $templateCache.put("views/orderNew.html",
-    "<md-content layout=column layout-align=center><div><p>{{order.customer.name}}, {{order.customer.postcode}}</p></div><md-divider></md-divider><form name=newServiceForm><div layout-gt-xs=row><div flex=30><md-input-container><md-select ng-model=newItem.product placeholder=\"Select a product\"><md-option ng-value=serviceProduct.product ng-repeat=\"serviceProduct in serviceProducts\">{{ serviceProduct.product.name }}</md-option></md-select></md-input-container></div><div flex=30><md-input-container><md-select ng-model=newItem.area placeholder=\"Select an area\"><md-option ng-value=area.name ng-repeat=\"area in areas\">{{ area.name }}</md-option></md-select></md-input-container></div><div flex=30><md-input-container><md-select ng-model=newItem.heading placeholder=\"Select a heading\"><md-option ng-value=heading.name ng-repeat=\"heading in headings\">{{ heading.name }}</md-option></md-select></md-input-container></div><div flex=10><md-input-container><div><ng-md-icon icon=add_circle size=36 ng-click=addNewService()></ng-md-icon></div></md-input-container></div></div></form><md-divider ng-if=\"order.totalValue > 0\"></md-divider><div layout=column layout-fill><md-list><md-list-item class=\"md-3-line noright\" ng-repeat=\"service in order.services\"><ng-md-icon icon={{service.product.options.icon}} size=36 ng-click=removeService(service)></ng-md-icon><div class=md-list-item-text ng-class=\"{'md-offset': service.options.offset }\"><h3>{{ service.product.name }}</h3><p>{{ service.heading }}</p><p>{{ service.area }}</p></div><div class=md-secondary><p>£{{service.product.price}}</p><ng-md-icon icon=clear size=36 ng-click=removeService(service) style=fill:pink></ng-md-icon></div></md-list-item></md-list><md-divider></md-divider><div layout=row layout-align=end><div flex=50></div><div flex=25><p>Total:</p></div><div flex=nogrow><p>£{{order.totalValue}}</p></div></div><md-divider></md-divider><md-button ng-disabled=\"order.totalValue == 0\" class=\"md-raised md-primary\">Save Order</md-button></div></md-content>");
+    "<div class=container><div class=row><div class=\"col-xs-12 col-sm-10 col-md-8 col-lg-8 col-sm-offset-1 col-md-offset-2\"><div><p>{{order.customer.name}}, {{order.customer.postcode}}</p></div><form name=newServiceForm class=form-horizontal><div class=form-group><ui-select ng-model=newItem.product theme=selectize title=\"Select a Product\"><ui-select-match placeholder=\"Select a Product\">{{$select.selected.product.name}}</ui-select-match><ui-select-choices repeat=\"serviceProduct.product as serviceProduct in serviceProducts | filter: $select.search\"><span ng-bind-html=\"serviceProduct.product.name | highlight: $select.search\"></span> <small ng-bind-html=\"serviceProduct.product.code | highlight: $select.search\"></small></ui-select-choices></ui-select><ui-select ng-model=newItem.area theme=selectize title=\"Select an Area\"><ui-select-match placeholder=\"Select an Area\">{{$select.selected.name}}</ui-select-match><ui-select-choices repeat=\"area in areas | filter: $select.search\"><span ng-bind-html=\"area.name | highlight: $select.search\"></span> <small ng-bind-html=\"area.code | highlight: $select.search\"></small></ui-select-choices></ui-select><ui-select ng-model=newItem.heading theme=selectize title=\"Select a Heading\"><ui-select-match placeholder=\"Select a Heading\">{{$select.selected.name}}</ui-select-match><ui-select-choices repeat=\"heading in headings | filter: $select.search\"><span ng-bind-html=\"heading.name | highlight: $select.search\"></span> <small ng-bind-html=\"heading.code | highlight: $select.search\"></small></ui-select-choices></ui-select><div class=btn-group><button id=single-button-new-item type=button class=\"btn btn-primary\" ng-click=addNewService()>Add</button></div></div></form><p ng-if=\"order.totalValue > 0\"></p><div layout=column><ul class=list-group><li class=list-group-item ng-repeat=\"service in order.services\"><a href=# class=\"list-group-item list-group-item-action active\"><h5 class=list-group-item-heading>{{service.product.name}}</h5><p class=list-group-item-text>{{service.area.name}}</p><p class=list-group-item-text>{{service.heading.name}}</p><p class=list-group-item-text>£{{service.product.price}}</p></a></li></ul><p>Total: £{{order.totalValue}}</p><button ng-disabled=\"order.totalValue == 0\" class=\"btn btn-primary\" ng-click=saveNewOrder()>Save Order</button></div></div></div></div>");
 }]);
-;angular.module('app', ['appTemplates', 'ui.router', 'config', 'restangular', 'angularSpinner', 'cgNotify', 'ipCookie', 'ngFileSaver','ui.bootstrap', 'ngMessages', 'ngAnimate', 'highcharts-ng', 'ngTouch'])
+;angular.module('app', ['appTemplates', 'ui.router', 'config', 'restangular', 'angularSpinner', 'cgNotify', 'ipCookie', 'ngFileSaver','ui.bootstrap', 'ngMessages', 'ngAnimate', 'highcharts-ng', 'ngTouch', 'ui.select', 'ngSanitize'])
 
     .run(['$rootScope', '$state', '$stateParams', function ($rootScope, $state, $stateParams) {
         $rootScope.$state = $state;
@@ -34,8 +34,10 @@
         });
     }])
 
-    .config(['$stateProvider', '$urlRouterProvider',
-        function ($stateProvider, $urlRouterProvider) {
+    .config(['$stateProvider', '$urlRouterProvider', 'uiSelectConfig',
+        function ($stateProvider, $urlRouterProvider, uiSelectConfig) {
+
+            uiSelectConfig.theme = 'selectize';
 
             var dashboardView = {
                     url: '/',
@@ -337,21 +339,6 @@ angular.module('app')
 ;'use strict';
 
 angular.module('app')
-    .controller('NavBarController', ['$scope', '$state', 'userService', 'notify', function ($scope, $state, userService, notify) {
-
-        function initialise(){
-            $scope.isCollapsed = true;
-            $scope.items = [
-                "The first choice!",
-                "And another choice for you.",
-                "but wait! A third!"
-            ];        }
-
-        initialise();
-    }]);
-;'use strict';
-
-angular.module('app')
     .controller('OrderNewController', ['$scope', '$state', 'userService', 'notify', function ($scope, $state, userService, notify) {
 
         var orderItemIndex = 0;
@@ -415,6 +402,10 @@ angular.module('app')
         function calculateOrderValue() {
             $scope.order.totalValue = _.sumBy($scope.order.services, function(service) { return service.product.price; });
         }
+
+        $scope.saveNewOrder = function(){
+            $state.go('dashboard');
+        };
 
         initialise();
     }]);

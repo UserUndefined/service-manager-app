@@ -1,4 +1,4 @@
-angular.module('app', ['appTemplates', 'ui.router', 'config', 'restangular', 'angularSpinner', 'cgNotify', 'ipCookie', 'ngFileSaver','ui.bootstrap', 'ngMessages', 'ngAnimate', 'highcharts-ng', 'ngTouch'])
+angular.module('app', ['appTemplates', 'ui.router', 'config', 'restangular', 'angularSpinner', 'cgNotify', 'ipCookie', 'ngFileSaver','ui.bootstrap', 'ngMessages', 'ngAnimate', 'highcharts-ng', 'ngTouch', 'ui.select', 'ngSanitize'])
 
     .run(['$rootScope', '$state', '$stateParams', function ($rootScope, $state, $stateParams) {
         $rootScope.$state = $state;
@@ -8,8 +8,10 @@ angular.module('app', ['appTemplates', 'ui.router', 'config', 'restangular', 'an
         });
     }])
 
-    .config(['$stateProvider', '$urlRouterProvider',
-        function ($stateProvider, $urlRouterProvider) {
+    .config(['$stateProvider', '$urlRouterProvider', 'uiSelectConfig',
+        function ($stateProvider, $urlRouterProvider, uiSelectConfig) {
+
+            uiSelectConfig.theme = 'selectize';
 
             var dashboardView = {
                     url: '/',

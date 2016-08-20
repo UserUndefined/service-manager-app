@@ -65,5 +65,9 @@ angular.module('app')
             $scope.order.totalValue = _.sumBy($scope.order.services, function(service) { return service.product.price; });
         }
 
+        $scope.saveNewOrder = function(){
+            $state.go('dashboard');
+        };
+
         initialise();
     }]);

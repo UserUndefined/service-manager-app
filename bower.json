@@ -16,7 +16,9 @@
     "highcharts-ng": "^0.0.12",
     "angular-bootstrap": "^2.0.2",
     "angular-touch": "^1.5.5",
-    "angular-messages": "^1.5.5"
+    "angular-messages": "^1.5.5",
+    "angular-sanitize": "^1.5.5",
+    "angular-ui-select": "^0.19.4"
   },
   "devDependencies": {
     "angular": "1.5.5"
