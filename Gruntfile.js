@@ -69,7 +69,7 @@ module.exports = function (grunt) {
                     options: {
                         livereload: true
                     },
-                    tasks: ['autoprefixer','copy:scripts','concat','ngAnnotate','copy:appMainJs']
+                    tasks: ['autoprefixer','copy:scripts','concatLive','ngAnnotate','copy:appMainJs']
                 },
                 html: {
                     files: ['<%= config.app %>/<%= config.views %>/{,**/}*.html'],
@@ -176,6 +176,12 @@ module.exports = function (grunt) {
                 }
             },
             copy: {
+                tmpCssManual: {
+                    expand: true,
+                    cwd: '<%= config.app %>/<%= config.styles %>/',
+                    src: ['bootstrap.css', 'bootstrap-theme.css', 'selectize.default.css'],
+                    dest: '<%= config.tmp %>/<%= config.styles %>/'
+                },
                 styles: {
                     src: '<%= config.tmp %>/<%= config.styles %>/main.css',
                     dest: '<%= config.dist %>/<%= config.styles %>/main.css'
@@ -275,6 +281,7 @@ module.exports = function (grunt) {
                 },
                 dist: {
                     src: [
+                        //'<%= config.app %>/bower_components/angular/angular.min.js',
                         '<%= config.tmp %>/<%= config.scripts %>/bower_comp.js',
                         '<%= config.tmp %>/<%= config.scripts %>/config.js',
                         '<%= config.tmp %>/<%= config.scripts %>/appTemplates.js',
@@ -429,6 +436,7 @@ module.exports = function (grunt) {
             'wiredep',
             'bower_concat',
             'compass',
+            'copy:tmpCssManual',
             'autoprefixer',
             'concat_css',
             'copy:tmpTemplates',
@@ -468,6 +476,7 @@ module.exports = function (grunt) {
             'ngconstant:development',
             'wiredep',
             'compass',
+            'copy:tmpCssManual',
             'autoprefixer',
             'concat_css',
             'copy:tmpTemplates',
