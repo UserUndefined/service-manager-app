@@ -23,6 +23,16 @@ module.exports = function(config) {
         'app/bower_components/angular-notify/dist/angular-notify.js',
         'app/bower_components/moment/moment.js',
         'app/bower_components/angular-cookie/angular-cookie.js',
+        'app/bower_components/blob-polyfill/Blob.js',
+        'app/bower_components/file-saver.js/FileSaver.js',
+        'app/bower_components/angular-file-saver/dist/angular-file-saver.bundle.js',
+        'app/bower_components/angular-animate/angular-animate.js',
+        'app/bower_components/highcharts-ng/dist/highcharts-ng.js',
+        'app/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
+        'app/bower_components/angular-touch/angular-touch.js',
+        'app/bower_components/angular-messages/angular-messages.js',
+        'app/bower_components/angular-sanitize/angular-sanitize.js',
+        'app/bower_components/angular-ui-select/dist/select.js',
         'app/scripts/main.js',
         'test/**/*.js'
     ],
@@ -64,12 +74,23 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
+    browsers: ['PhantomJS'],
 
+      plugins: [
+        'karma-junit-reporter',
+          'karma-chrome-launcher',
+          'karma-firefox-launcher',
+          'karma-jasmine',
+          'karma-phantomjs-launcher'
+      ],
+
+      junitreporter: {
+          outputFile: 'test/unit.xml'
+      },
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false,
+    singleRun: true,
 
     // Concurrency level
     // how many browser should be started simultaneous
