@@ -1,0 +1,99 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+            <p>Customer ID: {{customer.Id}}</p>
+            <form class="form-horizontal" name="customerEditForm"  ng-submit="saveCustomer()" novalidate>
+                <div class="form-group" ng-class="{ 'has-error' : customerEditForm.editCustomerName.$invalid && !customerEditForm.editCustomerName.$pristine }">
+                    <label for="editCustomerName">Name</label>
+                    <input type="text" class="form-control validate" name="editCustomerName" id="editCustomerName" placeholder="Name" ng-model="customer.name" required minlength="3" maxlength="100">
+                    <div class="help-block" ng-messages="customerEditForm.editCustomerName.$error"  ng-if="!customerEditForm.editCustomerName.$pristine">
+                        <div ng-message="required">You must supply a company name</div>
+                        <div ng-message="minlength">Company Name too short</div>
+                        <div ng-message="maxlength">Company Name too long</div>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error' : customerEditForm.editCustomerAddress1.$invalid && !customerEditForm.editCustomerAddress1.$pristine }">
+                    <label for="editCustomerAddress1">Address Line 1</label>
+                    <input type="text" class="form-control validate" name="editCustomerAddress1" id="editCustomerAddress1" placeholder="Address" ng-model="customer.address1" required minlength="3" maxlength="100">
+                    <div class="help-block" ng-messages="customerEditForm.editCustomerAddress1.$error" ng-if="!customerEditForm.editCustomerAddress1.$pristine">
+                        <div ng-message="required">You must supply a first line address</div>
+                        <div ng-message="minlength">Address too short</div>
+                        <div ng-message="maxlength">Address too long</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="editCustomerAddress2">Address Line 2</label>
+                    <input type="text" class="form-control validate" name="editCustomerAddress2" id="editCustomerAddress2" placeholder="Address" ng-model="customer.address2">
+                </div>
+                <div class="form-group">
+                    <label for="editCustomerTown">Town</label>
+                    <input type="text" class="form-control validate" name="editCustomerTown" id="editCustomerTown" placeholder="Town" ng-model="customer.town">
+                </div>
+                <div class="form-group">
+                    <label for="editCustomerCounty">County</label>
+                    <input type="text" class="form-control validate" name="editCustomerCounty" id="editCustomerCounty" placeholder="County" ng-model="customer.county">
+                </div>
+                <div class="form-group" ng-class="{ 'has-error' : customerEditForm.editCustomerPostcode.$invalid && !customerEditForm.editCustomerPostcode.$pristine }">
+                    <label for="editCustomerPostcode">Postcode</label>
+                    <input type="text" class="form-control validate" name="editCustomerPostcode" id="editCustomerPostcode" placeholder="Postcode" ng-model="customer.postcode"  required minlength="5" maxlength="8">
+                    <div class="help-block" ng-messages="customerEditForm.editCustomerPostcode.$error" ng-if="!customerEditForm.editCustomerPostcode.$pristine">
+                        <div ng-message="required">You must supply a postcode</div>
+                        <div ng-message="minlength">Postcode too short</div>
+                        <div ng-message="maxlength">Postcode too long</div>
+                        <div ng-message="pattern">Invalid Postcode</div>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error' : customerEditForm.editCustomerTelephone.$invalid && !customerEditForm.editCustomerTelephone.$pristine }">
+                    <label for="editCustomerTelephone">Telephone</label>
+                    <input type="text" class="form-control validate" name="editCustomerTelephone" id="editCustomerTelephone" placeholder="Telephone" ng-model="customer.telephone"  required minlength="7" maxlength="15">
+                    <div class="help-block" ng-messages="customerEditForm.editCustomerTelephone.$error" ng-if="!customerEditForm.editCustomerTelephone.$pristine">
+                        <div ng-message="required">You must supply a telephone number</div>
+                        <div ng-message="minlength">Telephone Number too short</div>
+                        <div ng-message="maxlength">Telephone Number too long</div>
+                        <div ng-message="pattern">Invalid Telephone</div>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error' : customerEditForm.editCustomerEmail.$invalid && !customerEditForm.editCustomerEmail.$pristine }">
+                    <label for="editCustomerEmail">Email</label>
+                    <input type="text" class="form-control validate" name="editCustomerEmail" id="editCustomerEmail" placeholder="Email" ng-model="customer.email"  required minlength="6" maxlength="100" ng-pattern="/^.+@.+\..+$/">
+                    <div class="help-block" ng-messages="customerEditForm.editCustomerEmail.$error" ng-if="!customerEditForm.editCustomerEmail.$pristine">
+                        <div ng-message="required">You must supply an email address</div>
+                        <div ng-message="minlength">Email Address too short</div>
+                        <div ng-message="maxlength">Email Address too long</div>
+                        <div ng-message="pattern">Invalid email address</div>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error' : customerEditForm.editCustomerUrl.$invalid && !customerEditForm.editCustomerUrl.$pristine }">
+                    <label for="editCustomerUrl">Url</label>
+                    <input type="text" class="form-control validate" name="editCustomerUrl" id="editCustomerUrl" placeholder="URL" ng-model="customer.url" minlength="7" maxlength="255">
+                    <div class="help-block" ng-messages="customerEditForm.editCustomerUrl.$error" ng-if="!customerEditForm.editCustomerUrl.$pristine">
+                        <div ng-message="minlength">URL too short</div>
+                        <div ng-message="maxlength">URL too long</div>
+                        <div ng-message="pattern">Invalid URL</div>
+                    </div>
+                </div>
+                <div class="form-group" uib-dropdown is-open="status.isopen">
+                    <label>Classification</label>
+                    <ui-select ng-model="customer.category" theme="selectize" title="Select a Classification">
+                        <ui-select-match placeholder="Select a Classification">{{$select.selected.name}}</ui-select-match>
+                        <ui-select-choices repeat="category in categories | filter: $select.search">
+                            <span ng-bind-html="category.name | highlight: $select.search"></span>
+                            <small ng-bind-html="category.code | highlight: $select.search"></small>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+                <div class="form-group">
+                    <label for="editCustomerNotes">Notes</label>
+                    <textarea type="text" class="form-control validate" name="editCustomerNotes" id="editCustomerNotes" placeholder="Notes" ng-model="customer.notes" maxlength="1024"></textarea>
+                    <div class="help-block" ng-messages="customerEditForm.editCustomerNotes.$error" ng-if="!customerEditForm.editCustomerNotes.$pristine">
+                        <div ng-message="maxlength">Notes are too long</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-click="saveCustomer()" ng-disabled="customerEditForm.$invalid">Save Customer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
