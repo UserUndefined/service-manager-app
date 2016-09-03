@@ -4,11 +4,11 @@ angular.module('app')
     .controller('CustomerSearchController', ['$scope', '$state', 'userService', 'notify', function ($scope, $state, userService, notify) {
 
         function initialise(){
-            $scope.customer = {searchText: '', results: []};
+            $scope.search = {customerName: '', results: []};
         }
 
-        $scope.searchCustomers = function(){
-            $scope.customer.results = [{name: 'Test Customer'}];
+        $scope.searchCustomer = function(){
+            $scope.search.results = [{name: 'Test Customer'},{name: 'Test Customer2'},{name: 'Test Customer3'}];
         };
 
         initialise();

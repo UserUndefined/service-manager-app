@@ -1,14 +1,27 @@
-<md-content layout="row" layout-align="center" >
-    <div layout-fill flex-gt-xs="66">
-        <div layout-align="center">
-            <form name="customerSearchForm" layout="column">
-                <md-input-container class="md-block">
-                    <label>Search</label>
-                    <input name="customerSearch" type="text" class="validate" ng-model="customer.searchText">
-                </md-input-container>
-                <md-button ng-click="searchCustomers()" ng-disabled="customer.searchText == ''" class="md-raised md-primary">Search</md-button>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-10 col-lg-8 col-md-offset-1 col-lg-offset-2">
+            <form class="form-horizontal" name="customerSearchForm"  ng-submit="searchCustomer()" novalidate>
+                <div class="form-group" ng-class="{ 'has-error' : customerSearchForm.customerNameSearch.$invalid && !customerSearchForm.customerNameSearch.$pristine }">
+                    <label for="customerNameSearch">Name</label>
+                    <input type="text" class="form-control validate" name="customerNameSearch" id="customerNameSearch" placeholder="Name" ng-model="search.customerName" required>
+                    <div class="help-block" ng-messages="customerSearchForm.customerNameSearch.$error"  ng-if="!customerSearchForm.customerNameSearch.$pristine">
+                        <div ng-message="required">Search name is required</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-click="searchCustomer()" ng-disabled="customerSearchForm.$invalid">Search</button>
+                </div>
             </form>
+            <div layout="column">
+                <ul class="list-group">
+                    <li class="list-group-item" ng-repeat="result in search.results">
+                        <a href="#" class="list-group-item list-group-item-action active">
+                            <h5 class="list-group-item-heading">{{result.name}}</h5>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
-</md-content>
-
+</div>
