@@ -281,6 +281,7 @@ module.exports = function (grunt) {
                 },
                 dist: {
                     src: [
+                        //Uncomment next line for release builds
                         //'<%= config.app %>/bower_components/angular/angular.min.js',
                         '<%= config.tmp %>/<%= config.scripts %>/bower_comp.js',
                         '<%= config.tmp %>/<%= config.scripts %>/config.js',

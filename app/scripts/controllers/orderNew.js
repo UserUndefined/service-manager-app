@@ -1,4 +1,4 @@
-'use strict';
+//'use strict';
 
 angular.module('app')
     .controller('OrderNewController', ['$scope', '$state', 'userService', 'notify', function ($scope, $state, userService, notify) {
@@ -11,9 +11,16 @@ angular.module('app')
                     name: 'Test Customer',
                     postcode: 'TE5 T01'
                 },
-                //services: [{area:'test', heading:'test2', product: {name: 'Website', price: 250, options: {icon: 'web'}}}],
+                //services: [
+                //    {area:'area1', heading:'heading1', product: {name: 'Website', price: 250, options: {icon: 'web'}}},
+                //    {area:'area2', heading:'heading2', product: {name: 'SEO', price: 150, options: {icon: 'web'}}}
+                //],
                 services: [],
                 totalValue: 0
+            };
+            $scope.orderItemsStatus = {
+                orderItemOpen: false,
+                oneOrderItemAtATime: true
             };
             $scope.newItem = {itemIndex: orderItemIndex};
             $scope.serviceProducts = [
