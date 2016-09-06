@@ -17,8 +17,18 @@ html {
   height:100%;
   width:100%;
   display:table;
+  border: 10px;
+  background-color: #0b97c4;
 }
 .service-centered {
   display: table-cell;
   vertical-align: middle;
+}
+
+.login-container{
+  padding: 15px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  background-color: white;
 }

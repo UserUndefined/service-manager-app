@@ -7239,12 +7239,21 @@ html {
   height: 100%;
   width: 100%;
   display: table;
+  border: 10px;
+  background-color: #0b97c4;
 }
 
-/* line 21, ../../app/styles/main.scss */
+/* line 23, ../../app/styles/main.scss */
 .service-centered {
   display: table-cell;
   vertical-align: middle;
+}
+
+/* line 28, ../../app/styles/main.scss */
+.login-container {
+  padding: 15px;
+  border-radius: 10px;
+  background-color: white;
 }
 /**
  * selectize.default.css (v0.8.5) - Default Theme
