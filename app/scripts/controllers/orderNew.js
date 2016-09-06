@@ -73,6 +73,7 @@ angular.module('app')
         }
 
         $scope.saveNewOrder = function(){
+            notify({ message: $scope.order, duration:5000, classes:'alert-success'} );
             $state.go('dashboard');
         };
 
