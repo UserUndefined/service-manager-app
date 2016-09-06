@@ -7230,6 +7230,22 @@ html {
 .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
   color: palevioletred;
 }
+
+/* line 13, ../../app/styles/main.scss */
+.service-center-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: table;
+}
+
+/* line 21, ../../app/styles/main.scss */
+.service-centered {
+  display: table-cell;
+  vertical-align: middle;
+}
 /**
  * selectize.default.css (v0.8.5) - Default Theme
  * Copyright (c) 2013 Brian Reavis & contributors

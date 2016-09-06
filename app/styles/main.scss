@@ -9,3 +9,16 @@ html {
 .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
   color: palevioletred;
 }
+
+.service-center-container {
+  position: fixed;
+  top:0;
+  left:0;
+  height:100%;
+  width:100%;
+  display:table;
+}
+.service-centered {
+  display: table-cell;
+  vertical-align: middle;
+}

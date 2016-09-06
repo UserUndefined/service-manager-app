@@ -1,29 +1,33 @@
 <div class="container">
     <div class="row">
-        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-            <form name="loginForm">
-                <div class="form-group">
-                    <h3>Service Manager Login</h3>
+            <div class="service-center-container">
+                <div class="service-centered">
+                    <div class="col-xs-12 col-sm-6 col-md-4 col-sm-offset-3 col-md-offset-4">
+                    <form name="loginForm">
+                        <div class="form-group">
+                            <h3>Service Manager Login</h3>
+                        </div>
+                        <div class="form-group">
+                            <label for="logonOrganisation">Organisation</label>
+                            <input type="text" class="form-control" id="logonOrganisation" placeholder="Enter organisation" ng-model="user.organisation" required minlength="3" maxlength="50">
+                        </div>
+                        <div class="form-group">
+                            <label for="logonEmail">Email Address</label>
+                            <input type="email" class="form-control" id="logonEmail" placeholder="Enter email" ng-model="user.logon" required minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/">
+                        </div>
+                        <div class="form-group">
+                            <label for="logonPassword">Password</label>
+                            <input type="password" class="form-control" id="logonPassword" placeholder="Enter password" ng-model="user.password" required>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" ng-model="user.rememberMe"> Remember me
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block" ng-click="submitLogon()">Login</button>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <label for="logonOrganisation">Organisation</label>
-                    <input type="text" class="form-control" id="logonOrganisation" placeholder="Enter organisation" ng-model="user.organisation" required minlength="3" maxlength="50">
-                </div>
-                <div class="form-group">
-                    <label for="logonEmail">Email Address</label>
-                    <input type="email" class="form-control" id="logonEmail" placeholder="Enter email" ng-model="user.logon" required minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/">
-                </div>
-                <div class="form-group">
-                    <label for="logonPassword">Password</label>
-                    <input type="password" class="form-control" id="logonPassword" placeholder="Enter password" ng-model="user.password" required>
-                </div>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" ng-model="user.rememberMe"> Remember me
-                    </label>
-                </div>
-                <button type="submit" class="btn btn-default" ng-click="submitLogon()">Login</button>
-            </form>
+            </div>
         </div>
     </div>
 </div>
